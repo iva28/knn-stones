@@ -31,7 +31,7 @@ dataset <- dataset[,-c(first.chart:last.chart)]
 table(dataset$OnChart)
 # 226 in dataset have not been on any charts, whereas 71 have been
 # Since there is a noticeable difference between number of observations in each class, there may
-# be a problem when using kNN algorithm, since it is sensitive to data participation inbalance
+# be a problem when using kNN algorithm, since it is sensitive to data participation disbalance
 
 # for kNN analysis all predictor variables are numerical and should be standardizes
 length(unique(dataset$Title))
@@ -171,6 +171,7 @@ head(knn.pred)
 
 # create the confusion matrix
 knn.cm <- table(true = test.data$OnChart, predicted = knn.pred)
+
 knn.cm
 
 # compute the evaluation metrics
@@ -178,10 +179,10 @@ knn.eval <- compute.eval.metrics(knn.cm)
 knn.eval
 
 # Accuracy is 81.35%, for 44 we have correctly predicted that the song won't be on any chart and for 4 songs we have
-# correct;y predicted that it will be on a chart
+# correctly predicted that it will be on a chart
 
 # Precision is 81.48%, for 44 out of 54 songs that we have predicted wouldn't be on any chart we were correct
 
-# Recall is 97.7%, out of 45 songs that weren't on any charts for 44 we have predicted correctly they wouldn't be
+# Recall is 97.7%, out of 45 songs that weren't on any charts for 44 we have predicted correctly that they wouldn't be
 
 # F1 is 88.89%

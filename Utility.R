@@ -48,19 +48,18 @@ transormed.dataframe <- function(dataset) {
   dataset$Certification <- as.factor(dataset$Certification)
   dataset$`Album name` <- as.factor(dataset$`Album name`)
   
-  for(i in which(colnames(dataset) == 'UK Peak Pos'):which(colnames(dataset) == 'POL')) {
-    variable <- dataset[,i]
-    ordinal.positions.i <- sapply(variable, get.ordinal)
+  for(j in which(colnames(dataset) == 'UK Peak Pos'):which(colnames(dataset) == 'POL')) {
+    variable <- dataset[,j]
     # Get unique positions from the dataframe
-    unique.positions.i <- unique(ordinal.positions.i)
+    unique.positions.i <- unique(variable)
     numeric.vector.i <- sort(as.numeric(gsub("[^0-9]", "", unique.positions.i)))
     numeric.vector.i <- sapply(numeric.vector.i, get.ordinal)
     numeric.vector.i <- c("No",numeric.vector.i)
     
     #creating factor variable
-    variable.factor <- factor(ordinal.positions.i, levels = numeric.vector.i)
+    variable.factor <- factor(variable, levels = numeric.vector.i)
     #adding factor variable 
-    dataset[,i] <- variable.factor
+    dataset[,j] <- variable.factor
   }
   return(dataset)
 }
