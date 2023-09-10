@@ -29,6 +29,7 @@ dataset$OnChart <- as.factor(ifelse(no.matrix == 'TRUE', "Yes","No"))
 dataset <- dataset[,-c(first.chart:last.chart)]
 
 table(dataset$OnChart)
+prop.table(table(dataset$OnChart))
 # 226 in dataset have not been on any charts, whereas 71 have been
 # Since there is a noticeable difference between number of observations in each class, there may
 # be a problem when using kNN algorithm, since it is sensitive to data participation disbalance
